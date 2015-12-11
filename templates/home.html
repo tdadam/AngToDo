@@ -1,6 +1,13 @@
 <div class="alert alert-success">
-    <h3>basicController as bc</h3>
-    <input type="text" ng-model="bc.sometext" />
-    <h4>bc.sometext: <span ng-bind="bc.sometext"></span></h4>
-    <button ng-click="bc.doSomething()">Clear</button>
+<form name="addForm">
+    <input type="text" ng-model="bc.sometext" required/>
+
+    <select name="repeatSelect" id="repeatSelect" ng-model="bc.listType" required>
+        <option ng-repeat="option in bc.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    </select>
+    <button ng-click="bc.doSomething()" ng-disabled="addForm.$invalid">Add task</button>
+</form>
+</div>
+<div>
+
 </div>
