@@ -5,7 +5,9 @@
             "ui.router",
             "navController",
             "basicController",
-            "contactController"
+            "contactController",
+            "famController",
+            "workController"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -17,6 +19,16 @@
                         url: "/home",
                         templateUrl: "templates/home.html",
                         controller: "basicController as bc"
+                    })
+                    .state("family", {
+                        url: "/family",
+                        templateUrl: "templates/family.html",
+                        controller: "famController as fc"
+                    })
+                    .state("work", {
+                        url: "/work",
+                        templateUrl: "templates/work.html",
+                        controller: "workController as wc"
                     })
                     .state("about", {
                         url: "/about",

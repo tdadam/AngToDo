@@ -28,7 +28,11 @@
              ng-controller="navController as nav">
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: nav.isActive('/home')}">
-                    <a ui-sref="home">Lists</a></li>
+                    <a ui-sref="home">All Tasks</a></li>
+                <li ng-class="{ active: nav.isActive('/family')}">
+                    <a ui-sref="family">Family</a></li>
+                <li ng-class="{ active: nav.isActive('/work')}">
+                    <a ui-sref="work">Work</a></li>
                 <li ng-class="{ active: nav.isActive('/about')}">
                     <a ui-sref="about">About</a></li>
                 <li ng-class="{ active: nav.isActive('/contact')}">
@@ -52,6 +56,8 @@
 
 <!-- app js files -->
 <script type="text/javascript" src="js/contactController.js"></script>
+<script type="text/javascript" src="js/famController.js"></script>
+<script type="text/javascript" src="js/workController.js"></script>
 <script type="text/javascript" src="js/navController.js"></script>
 <script type="text/javascript" src="js/basicController.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
