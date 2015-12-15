@@ -5,7 +5,7 @@
     <!--<select ng-model="bc.listType" required>-->
         <!--<option ng-repeat="option in bc.data.availableOptions" value="{{option.id}}">{{option.name}}</option>-->
     <!--</select>-->
-    <input type="date" ng-model="bc.dateDue" required>
+    <input type="date" ng-model="bc.dateDue" min-date="bc.today()" required>
     <button ng-disabled="addForm.$invalid">Add task</button>
 </form>
 
@@ -15,8 +15,13 @@
         <li ng-repeat="todo in bc.doList" ng-class="{'done':todo.done}">
             <input type="checkbox" ng-model="todo.done" />
             <span ng-bind="todo.title"></span>
-            <span ng-bind="todo.due"></span>
+            <span ng-bind="todo.due | date"></span>
+            <!--<input type="text" datepicker-popup="{{format}}" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" />-->
             <!--<span>{{todo.due}}</span>-->
         </li>
     </ul>
 </div>
+<div>
+    <button ng-click="bc.clearDone()">Clear Done Tasks </button>
+</div>
+<!--<script>console.log(bc.today());</script>-->

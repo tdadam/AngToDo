@@ -11,7 +11,12 @@
         // list everything
         var bc = this;
         bc.doSomething = doSomething;
+        bc.clearDone = clearDone;
         bc.doList = [{'title':'placeholder', 'type':1, 'done':false}];
+        bc.today = function (){
+            bc.dt = new Date();
+        };
+        bc.today();
 
         // options in the dropdown for item type
         //bc.data = {
@@ -30,6 +35,11 @@
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
+        }
+        function clearDone(){
+            bc.doList = bc.doList.filter(function(item){
+                return !item.done
+            })
         }
     }
 }());

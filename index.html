@@ -27,20 +27,22 @@
         <div id="navbarCollapse" class="collapse navbar-collapse"
              ng-controller="navController as nav">
             <ul class="nav navbar-nav">
-                <li ng-class="{ active: nav.isActive('/home')}">
-                    <a ui-sref="home">All Tasks</a></li>
-                <li ng-class="{ active: nav.isActive('/family')}">
-                    <a ui-sref="family">Family</a></li>
-                <li ng-class="{ active: nav.isActive('/work')}">
-                    <a ui-sref="work">Work</a></li>
                 <li ng-class="{ active: nav.isActive('/about')}">
                     <a ui-sref="about">About</a></li>
-                <li ng-class="{ active: nav.isActive('/contact')}">
-                    <a ui-sref="contact">Contact</a></li>
+                <li ng-class="{ active: nav.isActive('/home')}">
+                    <a ui-sref="home">All Tasks</a></li>
+                <li >
+                    <a href="#" ng-click="bc.addList()">+</a>
+                </li>
+                <!--<li ng-class="{ active: nav.isActive('/work')}">-->
+                    <!--<a ui-sref="work">Work</a></li>-->
+
+                <!--<li ng-class="{ active: nav.isActive('/contact')}">-->
+                    <!--<a ui-sref="contact">Contact</a></li>-->
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="login">Login</a></li>
-            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li><a ui-sref="login">Login</a></li>-->
+            <!--</ul>-->
         </div>
     </div>
 </nav>
@@ -53,6 +55,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 
 <!-- app js files -->
 <script type="text/javascript" src="js/contactController.js"></script>
@@ -64,3 +67,6 @@
 
 </body>
 </html>
+
+
+<!--TODO: research abstract state-->
