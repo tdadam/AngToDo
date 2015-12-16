@@ -12,26 +12,17 @@
         var bc = this;
         bc.doSomething = doSomething;
         bc.clearDone = clearDone;
-        bc.doList = [{'title':'placeholder', 'type':1, 'done':false}];
-        bc.today = function (){
-            bc.dt = new Date();
-        };
-        bc.today();
+        bc.deleteTask = deleteTask;
+        //bc.doList = [{'title':'placeholder', 'type':1, 'done':false}];
+        bc.minDate = new Date();
+        console.log(bc.minDate);
 
-        // options in the dropdown for item type
-        //bc.data = {
-        //    availableOptions: [
-        //        {id: '1', name: 'Work'},
-        //        {id: '2', name: 'School'},
-        //        {id: '3', name: 'Family'},
-        //        {id: '4', name: 'Shopping'}
-        //    ]
-        //};
+        bc.listNames = [];
+        bc.doList = [];
 
         // define functions
         function doSomething() {
             bc.doList.push({'title':bc.sometext, 'due':bc.dateDue, 'type':bc.listType, 'done':false});
-            //alert(bc.sometext + " " + bc.listType);
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
@@ -40,6 +31,10 @@
             bc.doList = bc.doList.filter(function(item){
                 return !item.done
             })
+        }
+        function deleteTask(task){
+            var index = bc.doList.indexOf(task);
+            bc.doList.splice(index, 1);
         }
     }
 }());

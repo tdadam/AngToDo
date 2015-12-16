@@ -5,23 +5,29 @@
     <!--<select ng-model="bc.listType" required>-->
         <!--<option ng-repeat="option in bc.data.availableOptions" value="{{option.id}}">{{option.name}}</option>-->
     <!--</select>-->
-    <input type="date" ng-model="bc.dateDue" min-date="bc.today()" required>
-    <button ng-disabled="addForm.$invalid">Add task</button>
+    <input type="date" ng-model="bc.dateDue" min="{{bc.minDate | date:'yyyy-MM-dd'}}" required>
+    <button ng-disabled="addForm.$invalid" class="btn btn-success">Add task</button>
 </form>
 
 </div>
 <div>
-    <ul>
-        <li ng-repeat="todo in bc.doList" ng-class="{'done':todo.done}">
-            <input type="checkbox" ng-model="todo.done" />
-            <span ng-bind="todo.title"></span>
-            <span ng-bind="todo.due | date"></span>
+    <table>
+        <tr>
+            <th class="doneCheck">Complete?</th>
+            <th class="nameCol">Name</th>
+            <th class="dateCol">Due Date</th>
+            <th class="removeTask">Delete</th>
+        </tr>
+        <tr ng-repeat="todo in bc.doList | orderBy:'due'" ng-class="{'done':todo.done}">
+            <td class="doneCheck"><input type="checkbox" ng-model="todo.done" /></td>
+            <td class="nameCol"><span ng-bind="todo.title" ng-class="{pastDue: "></span></td>
+            <td class="dateCol"><span ng-bind="todo.due | date"></span></td>
+            <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
             <!--<input type="text" datepicker-popup="{{format}}" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" />-->
-            <!--<span>{{todo.due}}</span>-->
-        </li>
-    </ul>
+        </tr>
+    </table>
 </div>
 <div>
-    <button ng-click="bc.clearDone()">Clear Done Tasks </button>
+    <button id="clearBtn" ng-click="bc.clearDone()" class="btn btn-warning">Clear Done Tasks </button>
 </div>
 <!--<script>console.log(bc.today());</script>-->

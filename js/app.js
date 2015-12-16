@@ -5,7 +5,6 @@
             "ui.router",
             "navController",
             "basicController",
-            "contactController"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
