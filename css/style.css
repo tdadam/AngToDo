@@ -1,26 +1,60 @@
-h3 { margin-top: 0; }
-h4 { margin-top: 6px !important; }
-.top-margin { margin-top: 50px; }
-input[type=text], input[type=date], button { border: black 1px solid; margin-right: 5px;}
-.done{ text-decoration: line-through; color: darkgray; }
-#clearBtn { margin: 10px; }
-th{ margin: 3px; }
-.nameCol{ width: 250px; }
-.dateCol{ width: 120px; }
-.doneCheck{ width: 80px;}
-td.doneCheck { padding-left: 30px; }
-.removeTask{ width: 45px; }
-td.removeTask{ padding-left: 15px; }
-.pastDue { color: red; }
-/*.typeOne{*/
-    /*background-color: orange;*/
-/*}*/
-/*.typeTwo{*/
-    /*background-color: limegreen;*/
-/*}*/
-/*.typeThree{*/
-    /*background-color: deepskyblue;*/
-/*}*/
-/*.typeFour{*/
-    /*background-color: mediumpurple;*/
-/*}*/
+body{
+    width: 98%;
+    margin: auto;
+}
+h3 {
+    margin-top: 0;
+}
+h4 {
+    margin-top: 6px !important;
+}
+.top-margin {
+    margin-top: 50px;
+}
+input[type=text], input[type=date], button {
+    border: black 1px solid;
+    margin-right: 5px;
+}
+.done{
+    text-decoration: line-through;
+    color: darkgray;
+}
+#clearBtn {
+    margin-top: 10px;
+}
+th{
+    margin: 3px;
+    text-align: center;
+}
+.nameCol{
+    width: 250px;
+    padding-left: 5px;
+}
+.dateCol{
+    width: 120px;
+    padding-left: 5px;
+}
+.doneCheck{
+    width: 80px;
+}
+td.doneCheck {
+    text-align: center;
+}
+.removeTask{
+    width: 50px;
+}
+td.removeTask{
+    text-align: center;
+}
+.pastDue {
+    color: red;
+}
+.even{
+    background-color: #E1E1E1;
+}
+table, th, td {
+    border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+}
