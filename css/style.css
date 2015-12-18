@@ -22,7 +22,7 @@ input[type=text], input[type=date], select {
     text-decoration: line-through;
     color: darkgray;
 }
-#clearBtn {
+.clearBtn {
     margin-top: 10px;
 }
 th{

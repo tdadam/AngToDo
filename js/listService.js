@@ -32,12 +32,11 @@
                     return;
                 }
             }
-            ls.listCount++;
-            ls.currentList = ls.listCount-1;
             ls.listNames.push(listName);
         }
         function createTask(title, due, type){
-            ls.doList.push({'title':title, 'due':due, 'type':type, 'done':false, 'past':false, 'archive':false})
+            var index = ls.listNames.indexOf(type);
+            ls.doList.push({'title':title, 'due':due, 'type':index, 'done':false, 'past':false, 'archive':false})
         }
         function deleteTask(task){
             var index = ls.doList.indexOf(task);
@@ -49,9 +48,13 @@
             }
         }
         function clearArchive(){
-            for (var i = 0; i < ls.doList.length; i++){
-                if (ls.doList[i].archive) {
-                    ls.doList.splice(i, 1);
+            var checker = ls.doList;
+            for (var i = 0; i < checker.length; i++){
+                if (checker[i].archive && !checker[i].done){
+                    checker[i].archive = false;
+                }
+                else if (checker[i].archive && checker[i].done){
+                    checker.splice(i, 1);
                     i--;
                 }
             }

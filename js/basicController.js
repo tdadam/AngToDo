@@ -20,12 +20,19 @@
         bc.archiveChecked = archiveChecked;
         bc.clearArchive = clearArchive;
         bc.tooLate = tooLate;
+        bc.listClick = listClick;
+
+        bc.currentSelect = 'all';
+        bc.currentList = 0;
 
         //bc.$storage = $localStorage;
 
         // define functions
         function createTask() {
             listService.createTask(bc.sometext, bc.dateDue, bc.listType);
+            if(bc.currentSelect == 'list'){
+                bc.listClick(bc.listType);
+            }
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
@@ -43,5 +50,14 @@
             listService.tooLate();
         }
         bc.tooLate();
+
+        function listClick(par){
+            if (par == 'all' || par == 'archive'){
+                bc.currentSelect = par;
+            }
+            else {
+                bc.currentSelect = bc.listNames.indexOf(par);
+            }
+        }
     }
 }());

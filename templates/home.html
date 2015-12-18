@@ -1,7 +1,7 @@
 <div class="alert alert-success" >
-    <button class="btn btn-default" id="allBtn">All Tasks</button>
-    <button class="btn btn-default listBtns" ng-repeat="list in bc.listNames">{{list}}</button>
-    <button class="btn btn-default" id="archiveBtn">Archived Tasks</button>
+    <button ng-class="{active: bc.currentSelect=='all'}" class="btn btn-default" id="allBtn" ng.model="bc.currentAll" ng-click="bc.listClick('all')">All Tasks</button>
+    <button ng-class="{active: bc.currentSelect==$index}" class="btn btn-default listBtns" ng-repeat="list in bc.listNames" ng-click="bc.listClick(list)">{{list}}</button>
+    <button ng-class="{active: bc.currentSelect=='archive'}" class="btn btn-default" id="archiveBtn" ng-model="bc.currentArchive" ng-click="bc.listClick('archive')">Archived Tasks</button>
 
 <form name="addForm" ng-submit="bc.createTask()">
     <input type="text" ng-model="bc.sometext" required/>
@@ -22,8 +22,20 @@
             <th class="dateCol">Due Date</th>
             <th class="removeTask">Delete</th>
         </tr>
-        <tr ng-repeat="todo in bc.doList | orderBy:'due'" ng-class="{'done':todo.done}" ng-class-even="'even'">
+        <tr ng-show="bc.currentSelect=='all'" ng-repeat="todo in bc.doList | filter:{archive:false} | orderBy:'due'" ng-class="{'done':todo.done}" ng-class-even="'even'">
             <td class="doneCheck"><input type="checkbox" ng-model="todo.done" /></td>
+            <td class="nameCol"><span ng-bind="todo.title" ng-class="{'pastDue':todo.past}"></span></td>
+            <td class="dateCol"><span ng-bind="todo.due | date"></span></td>
+            <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        <tr ng-show="bc.currentSelect=='list'" ng-repeat="todo in bc.doList | filter:{type:bc.currentList} | filter:{archive:false} | orderBy:'due'" ng-class="{'done':todo.done}" ng-class-even="'even'">
+            <td class="doneCheck"><input type="checkbox" ng-model="todo.done" /></td>
+            <td class="nameCol"><span ng-bind="todo.title" ng-class="{'pastDue':todo.past}"></span></td>
+            <td class="dateCol"><span ng-bind="todo.due | date"></span></td>
+            <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        <tr ng-show="bc.currentSelect=='archive'" ng-repeat="todo in bc.doList | filter:{archive:true} | orderBy:'due'" ng-class="{'done':todo.done}" ng-class-even="'even'">
+            <td class="doneCheck"><input type="checkbox" ng-model="todo.done"/></td>
             <td class="nameCol"><span ng-bind="todo.title" ng-class="{'pastDue':todo.past}"></span></td>
             <td class="dateCol"><span ng-bind="todo.due | date"></span></td>
             <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
@@ -31,5 +43,12 @@
     </table>
 </div>
 <div>
-    <button id="clearBtn" ng-click="bc.clearDone()" class="btn btn-warning">Archive Checked Tasks</button>
+    <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
+    <button ng-show="bc.currentSelect=='archive'" ng-click="bc.clearArchive()" class="btn btn-danger clearBtn">Clear Archived Tasks</button>
 </div>
+
+<!--TODO: edit item names, use ng-dblclick on the table-->
+<!--TODO: ngStorage-->
+<!--TODO: Select All-->
+<!--TODO: Animation-->
+<!--TODO: rename/remove lists-->

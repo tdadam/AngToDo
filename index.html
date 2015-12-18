@@ -28,7 +28,7 @@
              ng-controller="navController as nav">
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: nav.isActive('/home')}">
-                    <a ui-sref="home">All Tasks</a>
+                    <a ui-sref="home">Tasks</a>
                 </li>
                 <li ng-class="{ active: nav.isActive('/about')}">
                     <a ui-sref="about">About</a>
@@ -37,18 +37,8 @@
                     <input type="text" ng-model="nav.listName">
                     <button class="btn btn-primary" ng-click="nav.addList()">Add List</button>
                 </li>
-                <!--<li >-->
-                    <!--<a href="#" ng-click="bc.addList()">+</a>-->
-                <!--</li>-->
-                <!--<li ng-class="{ active: nav.isActive('/work')}">-->
-                    <!--<a ui-sref="work">Work</a></li>-->
-
-                <!--<li ng-class="{ active: nav.isActive('/contact')}">-->
-                    <!--<a ui-sref="contact">Contact</a></li>-->
             </ul>
-            <!--<ul class="nav navbar-nav navbar-right">-->
-                <!--<li><a ui-sref="login">Login</a></li>-->
-            <!--</ul>-->
+
         </div>
     </div>
 </nav>
