@@ -15,7 +15,7 @@
         ls.addList = addList;
         ls.listCount = 1;
         ls.currentList = 0;
-        ls.listNames = ["testing", "2"];
+        ls.listNames = [];
 
         ls.createTask = createTask;
         ls.minDate = new Date();
