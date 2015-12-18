@@ -44,7 +44,11 @@
 </div>
 <div>
     <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
+    <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteAllInList(bc.currentSelect)" class="btn btn-danger clearBtn">Delete Items in {{bc.listName[bc.currentSelect]}}</button>
     <button ng-show="bc.currentSelect=='archive'" ng-click="bc.clearArchive()" class="btn btn-danger clearBtn">Clear Archived Tasks</button>
+</div>
+<div>
+    <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteList(bc.currentSelect)" class="btn btn-danger clearBtn">Delete List: {{bc.listName[bc.currentSelect]}}</button>
 </div>
 
 <!--TODO: edit item names, use ng-dblclick on the table-->
