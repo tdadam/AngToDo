@@ -58,7 +58,8 @@
                 bc.currentSelect = par;
             }
             else {
-                bc.currentSelect = bc.listNames.indexOf(par);
+                bc.currentSelect = 'list';
+                bc.currentList = bc.listNames.indexOf(par);
             }
         }
         function deleteAllInList(num){
