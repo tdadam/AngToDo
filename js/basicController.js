@@ -67,6 +67,7 @@
         }
         function deleteList(index){
             listService.deleteList(index);
+            bc.currentSelect = 'all';
         }
     }
 }());
