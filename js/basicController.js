@@ -21,6 +21,8 @@
         bc.clearArchive = clearArchive;
         bc.tooLate = tooLate;
         bc.listClick = listClick;
+        bc.deleteAllInList = deleteAllInList;
+        bc.deleteList = deleteList;
 
         bc.currentSelect = 'all';
         bc.currentList = 0;
@@ -56,8 +58,16 @@
                 bc.currentSelect = par;
             }
             else {
-                bc.currentSelect = bc.listNames.indexOf(par);
+                bc.currentSelect = 'list';
+                bc.currentList = bc.listNames.indexOf(par);
             }
+        }
+        function deleteAllInList(num){
+            listService.deleteAllInList(num);
+        }
+        function deleteList(index){
+            listService.deleteList(index);
+            bc.currentSelect = 'all';
         }
     }
 }());
