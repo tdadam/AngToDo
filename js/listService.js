@@ -25,6 +25,8 @@
         ls.archiveChecked = archiveChecked;
         ls.clearArchive = clearArchive;
         ls.tooLate = tooLate;
+        ls.deleteAllInList = deleteAllInList;
+        ls.deleteList = deleteList;
 
         function addList(listName){
             for (var i = 0; i < ls.listNames.length; i++){
@@ -64,6 +66,18 @@
                 var taskDue = ls.doList[i].due.getTime();
                 (earliest > taskDue) ? ls.doList[i].past = true : ls.doList[i].past = false;
             }
+        }
+        function deleteAllInList(num){
+            for (var i = 0; i < ls.doList.length; i++){
+                if (ls.doList[i].type == num){
+                    ls.doList.splice(i, 1);
+                    i--
+                }
+            }
+        }
+        function deleteList(num){
+            ls.deleteAllInList(num);
+            ls.listNames.splice(num, 1); 
         }
     }
 }());
