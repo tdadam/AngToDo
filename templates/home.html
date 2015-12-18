@@ -1,7 +1,15 @@
 <div class="alert alert-success" >
-<form name="addForm" ng-submit="bc.doSomething()">
+    <button class="btn btn-default" id="allBtn">All Tasks</button>
+    <button class="btn btn-default listBtns" ng-repeat="list in bc.listNames">{{list}}</button>
+    <button class="btn btn-default" id="archiveBtn">Archived Tasks</button>
+
+<form name="addForm" ng-submit="bc.createTask()">
     <input type="text" ng-model="bc.sometext" required/>
     <input type="date" ng-model="bc.dateDue" min="{{bc.minDate | date:'yyyy-MM-dd'}}" required>
+    <select class="form-control" ng-model="bc.listType" value="{{$index}}" required>
+        <option></option>
+        <option ng-repeat="name in bc.listNames" >{{name}}</option>
+    </select>
     <button ng-disabled="addForm.$invalid" class="btn btn-success">Add task</button>
 </form>
 
@@ -23,6 +31,5 @@
     </table>
 </div>
 <div>
-    <button id="clearBtn" ng-click="bc.clearDone()" class="btn btn-warning">Clear Done Tasks </button>
+    <button id="clearBtn" ng-click="bc.clearDone()" class="btn btn-warning">Archive Checked Tasks</button>
 </div>
-<!--<script>console.log(bc.today());</script>-->

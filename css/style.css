@@ -11,9 +11,12 @@ h4 {
 .top-margin {
     margin-top: 50px;
 }
-input[type=text], input[type=date], button {
+input[type=text], input[type=date], select {
     border: black 1px solid;
     margin-right: 5px;
+    width: 153px;
+    height: 32px;
+    padding-bottom: 2px;
 }
 .done{
     text-decoration: line-through;
@@ -57,4 +60,21 @@ table, th, td {
 }
 table {
     border-collapse: collapse;
+}
+.form-control {
+    width: 153px;
+    display: inline-block;
+    margin-right: 5px;
+}
+#navAddList{
+    padding-top: 8px;
+}
+.listBtns{
+    margin: 0 10px 10px 0;
+}
+#allBtn{
+    margin: 0 6px 10px 0;
+}
+#archiveBtn{
+    margin: 0 0 10px -4px;
 }

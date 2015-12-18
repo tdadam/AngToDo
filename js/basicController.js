@@ -1,54 +1,46 @@
 (function () {
     'use strict';
 
-    angular.module('basicController', [])
+    angular.module('basicController', ['ngStorage'])
         .controller('basicController', basicController);
 
-    basicController.$inject = [];
+    basicController.$inject = ['listService'];
 
-    function basicController() {
-
-
-
-        // list everything
+    function basicController(listService) {
         var bc = this;
-        bc.doSomething = doSomething;
-        bc.clearDone = clearDone;
-        bc.deleteTask = deleteTask;
-        bc.addList = addList;
-        bc.tooLate = tooLate;
-        bc.minDate = new Date();
-        bc.testDate = new Date('2015-10-17');
-        var earliest = bc.minDate.getTime();
 
-        bc.listNames = [];
-        bc.doList = [{'title':'testing', 'due':bc.testDate, 'type':bc.listType, 'done':false, 'past':false}];
+        bc.doList = listService.doList;
+
+        bc.listNames = listService.listNames;
+
+        bc.createTask = createTask;
+        bc.minDate = listService.minDate;
+
+        bc.deleteTask = deleteTask;
+        bc.archiveChecked = archiveChecked;
+        bc.clearArchive = clearArchive;
+        bc.tooLate = tooLate;
+
+        //bc.$storage = $localStorage;
 
         // define functions
-        function doSomething() {
-            bc.doList.push({'title':bc.sometext, 'due':bc.dateDue, 'type':bc.listType, 'done':false, 'past':false});
+        function createTask() {
+            listService.createTask(bc.sometext, bc.dateDue, bc.listType);
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
-            bc.tooLate();
-        }
-        function clearDone(){
-            bc.doList = bc.doList.filter(function(item){
-                return !item.done
-            })
         }
         function deleteTask(task){
-            var index = bc.doList.indexOf(task);
-            bc.doList.splice(index, 1);
+            listService.deleteTask(task);
         }
-        function addList(){
-
+        function archiveChecked(){
+            listService.archiveChecked();
+        }
+        function clearArchive(){
+            listService.clearArchive();
         }
         function tooLate(){
-            for (var i = 0; i < bc.doList.length; i++){
-                var taskDue = bc.doList[i].due.getTime();
-                (earliest > taskDue) ? bc.doList[i].past = true : bc.doList[i].past = false;
-            }
+            listService.tooLate();
         }
         bc.tooLate();
     }
