@@ -77,6 +77,11 @@
         }
         function deleteList(num){
             ls.deleteAllInList(num);
+            for (var i = 0; i < ls.doList.length; i++){
+                if (ls.doList[i].type > num){
+                    ls.doList[i].type -= 1;
+                }
+            }
             ls.listNames.splice(num, 1); 
         }
     }
