@@ -78,3 +78,6 @@ table {
 #archiveBtn{
     margin: 0 0 10px -4px;
 }
+input[type=date]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}

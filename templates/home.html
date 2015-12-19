@@ -43,8 +43,10 @@
     </table>
 </div>
 <div>
-    <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
     <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteAllInList(bc.currentList)" class="btn btn-danger clearBtn">Delete Items in {{bc.listNames[bc.currentList]}}</button>
+</div>
+<div>
+    <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
     <button ng-show="bc.currentSelect=='archive'" ng-click="bc.clearArchive()" class="btn btn-danger clearBtn">Clear Archived Tasks</button>
 </div>
 <div>
@@ -55,4 +57,4 @@
 <!--TODO: ngStorage-->
 <!--TODO: Select All-->
 <!--TODO: Animation-->
-<!--TODO: rename/remove lists-->
+<!--TODO: rename lists-->
