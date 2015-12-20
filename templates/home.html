@@ -4,9 +4,12 @@
     <button ng-class="{active: bc.currentSelect=='archive'}" class="btn btn-default" id="archiveBtn" ng-model="bc.currentArchive" ng-click="bc.listClick('archive')">Archived Tasks</button>
 
 <form name="addForm" ng-submit="bc.createTask()">
-    <input type="text" ng-model="bc.sometext" required/>
-    <input type="date" ng-model="bc.dateDue" min="{{bc.minDate | date:'yyyy-MM-dd'}}" required>
-    <select class="form-control" ng-model="bc.listType" value="{{$index}}" required>
+    <label for="taskName">Task Name (required): </label>
+    <input type="text" ng-model="bc.sometext" id="taskName" required/>
+    <label for="taskDueDate">Date Due: </label>
+    <input type="date" ng-model="bc.dateDue" min="{{bc.minDate | date:'yyyy-MM-dd'}}" id="taskDueDate">
+    <label for="taskList">List to Contain Task (required): </label>
+    <select class="form-control" ng-model="bc.listType" value="{{$index}}" id="taskList" required>
         <option></option>
         <option ng-repeat="name in bc.listNames" >{{name}}</option>
     </select>

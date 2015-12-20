@@ -63,8 +63,12 @@
         }
         function tooLate(){
             for (var i = 0; i < ls.doList.length; i++){
-                var taskDue = ls.doList[i].due.getTime();
-                (earliest > taskDue) ? ls.doList[i].past = true : ls.doList[i].past = false;
+                if (ls.doList[i].due != null){
+                    var taskDue = ls.doList[i].due.getTime();
+                    if (earliest > taskDue) {
+                    ls.doList[i].past = true;
+                    }
+                }
             }
         }
         function deleteAllInList(num){
