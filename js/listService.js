@@ -10,12 +10,11 @@
         var ls = this;
         //ls.$storage = $localStorage;
 
-        ls.doList = [];
+        ls.doList = [{'title':'testing', 'due':null, 'type':0, 'done':false, 'past':false, 'archive':false}];
 
         ls.addList = addList;
         ls.listCount = 1;
-        ls.currentList = 0;
-        ls.listNames = [];
+        ls.listNames = ['testing'];
 
         ls.createTask = createTask;
         ls.minDate = new Date();

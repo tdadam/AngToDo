@@ -3,7 +3,8 @@ body{
     margin: auto;
 }
 h3 {
-    margin-top: 0;
+    margin: 0 10px 0 0;
+    display: inline;
 }
 h4 {
     margin-top: 6px !important;
@@ -80,4 +81,7 @@ table {
 }
 input[type=date]::-webkit-inner-spin-button{
     -webkit-appearance: none;
+}
+.listTitle{
+    margin-bottom: 10px;
 }
