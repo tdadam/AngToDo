@@ -10,7 +10,6 @@
         var bc = this;
 
         bc.doList = listService.doList;
-        bc.displayFilter = bc.doList;
 
         bc.listNames = listService.listNames;
 
@@ -39,6 +38,7 @@
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
+            bc.filterItem();
         }
 
         function deleteTask(task) {
@@ -83,16 +83,17 @@
         }
 
         function filterItem() {
-            bc.displayFilter = [];
-            for (var i = 0; i < bc.doList.length; i++) {
-                if (bc.currentSelect == 'all' && bc.doList[i].archive == false) {
-                    bc.displayFilter.push(bc.doList[i]);
+            bc.doList = [];
+            var v = listService.doList;
+            for (var i = 0; i < v.length; i++) {
+                if (bc.currentSelect == 'all' && v[i].archive == false) {
+                    bc.doList.push(v[i]);
                 }
-                else if (bc.currentSelect == 'archive' && bc.doList[i].archive == true) {
-                    bc.displayFilter.push(bc.doList[i]);
+                else if (bc.currentSelect == 'archive' && v[i].archive == true) {
+                    bc.doList.push(v[i]);
                 }
-                else if (bc.currentSelect == 'list' && bc.doList[i].archive == false && bc.doList[i].type == bc.currentList) {
-                    bc.displayFilter.push(bc.doList[i]);
+                else if (bc.currentSelect == 'list' && v[i].archive == false && v[i].type == bc.currentList) {
+                    bc.doList.push(v[i]);
                 }
             }
         }
