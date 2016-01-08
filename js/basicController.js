@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('basicController', ['ngStorage'])
+    angular.module('basicController', [])
         .controller('basicController', basicController);
 
     basicController.$inject = ['listService'];

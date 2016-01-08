@@ -1,6 +1,6 @@
-<tr ng-class="{'done':todo.done}" ng-class-even="'even'">
-    <td class="doneCheck"><input type="checkbox" ng-model="todo.done" /></td>
-    <td class="nameCol"><span ng-bind="todo.title" ng-class="{'pastDue':todo.past}"></span></td>
-    <td class="dateCol"><span ng-bind="todo.due | date" ng-class="{'pastDue':todo.past}"></span></td>
+<tr ng-class="{'done':tc.todo.done}" ng-class-even="'even'">
+    <td class="doneCheck"><input type="checkbox" ng-model="tc.todo.done" /></td>
+    <td class="nameCol"><span ng-bind="tc.todo.title" ng-class="{'pastDue':tc.todo.past}"></span></td>
+    <td class="dateCol"><span ng-bind="tc.todo.due | date" ng-class="{'pastDue':tc.todo.past}"></span></td>
     <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
 </tr>

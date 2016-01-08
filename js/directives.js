@@ -5,7 +5,8 @@
 
         .directive('tdNonefound', tdNonefound)
     .directive('tdHeaderrow', tdHeaderrow)
-        .directive('tdItem', tdItem);
+        .directive('tdItem', tdItem)
+        .controller('tdItemController', tdItemController);
 
     function tdNonefound() {
         return {
@@ -22,12 +23,20 @@
     }
     function tdItem(){
         return {
+            scope:{},
             restrict: 'A',
             replace: true,
-            scope:{
+            bindToController:{
                 todo: '='
             },
+            controller: 'tdItemController as tc',
             templateUrl: './templates/tdItem.html'
         };
     }
+
+    function tdItemController() {
+        var tc = this;
+
+    }
+
 }());
