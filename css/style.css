@@ -85,3 +85,6 @@ input[type=date]::-webkit-inner-spin-button{
 .listTitle{
     margin-bottom: 10px;
 }
+.glyphicon-remove{
+    color: red;
+}

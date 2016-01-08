@@ -22,24 +22,9 @@
     <div ng-show="bc.currentSelect=='all'" class="listTitle"><h3>All Tasks</h3></div>
     <div ng-show="bc.currentSelect=='archive'" class="listTitle"><h3>Archived Tasks</h3></div>
     <table>
-        <tr>
-            <th class="doneCheck">Complete?</th>
-            <th class="nameCol">Name</th>
-            <th class="dateCol">Due Date</th>
-            <th class="removeTask">Delete</th>
-        </tr>
-        <tr ng-repeat="todo in listedItems = (bc.doList | orderBy:'due')" ng-class="{'done':todo.done}" ng-class-even="'even'">
-            <td class="doneCheck"><input type="checkbox" ng-model="todo.done" /></td>
-            <td class="nameCol"><span ng-bind="todo.title" ng-class="{'pastDue':todo.past}"></span></td>
-            <td class="dateCol"><span ng-bind="todo.due | date" ng-class="{'pastDue':todo.past}"></span></td>
-            <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
-        </tr>
-        <tr ng-hide="listedItems.length">
-            <td></td>
-            <td class="nameCol"><i>No items in this list</i></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <tr td-headerrow></tr>
+        <tr td-item ng-repeat="todo in bc.doList | orderBy:'due'" todo="todo"></tr>
+        <tr td-nonefound ng-hide="bc.doList.length"></tr>
     </table>
 </div>
 <div>
@@ -49,12 +34,10 @@
     <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
     <button ng-show="bc.currentSelect=='archive'" ng-click="bc.clearArchive()" class="btn btn-danger clearBtn">Clear Archived Tasks</button>
 </div>
-<div>
-    <!--<button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteList(bc.currentList)" class="btn btn-danger clearBtn">Delete List: {{bc.listNames[bc.currentList]}}</button>-->
-</div>
 
-<!--TODO: edit item names, use ng-dblclick on the table-->
+<!--TODO: change from table to divs, and format-->
+<!--TODO: edit item and list names, use ng-dblclick or ng-click on the fields-->
 <!--TODO: ngStorage-->
 <!--TODO: Select All-->
 <!--TODO: Animation-->
-<!--TODO: rename lists-->
+<!--TODO: figure out how to store just the non-archived to display on load-->
