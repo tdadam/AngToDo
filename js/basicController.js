@@ -23,11 +23,10 @@
         bc.listClick = listClick;
         bc.deleteList = deleteList;
         bc.filterItem = filterItem;
+        //bc.tooLate = tooLate;
 
         bc.currentSelect = 'all';
         bc.currentList = 0;
-
-        //bc.$storage = $localStorage;
 
         // define functions
         function createTask() {
@@ -61,9 +60,10 @@
             bc.filterItem();
         }
 
-        (function () {
-            listService.tooLate();
-        })();
+        //function tooLate() {
+        //    listService.tooLate();
+        //}
+        //tooLate();
 
         function listClick(par) {
             if (par == 'all' || par == 'archive') {

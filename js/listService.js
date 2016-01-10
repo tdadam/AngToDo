@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('listService', [])
+    angular.module('listService', ['ngStorage'])
         .service('listService', listService);
 
     listService.$inject = ['$localStorage'];
@@ -9,11 +9,10 @@
     function listService($localStorage) {
         var ls = this;
 
-        ls.doList = $localStorage.doList ? $localStorage.doList : [{'title':'testing', 'due':null, 'type':0, 'done':false, 'past':false, 'archive':false}];
+        ls.doList = $localStorage.doList ? $localStorage.doList : [];
 
         ls.addList = addList;
-        ls.listCount = 1;
-        ls.listNames = $localStorage.listNames ? $localStorage.listNames : ['testing'];
+        ls.listNames = $localStorage.listNames ? $localStorage.listNames : [];
 
         ls.createTask = createTask;
         ls.minDate = new Date();
@@ -22,12 +21,22 @@
         ls.deleteTask = deleteTask;
         ls.archiveChecked = archiveChecked;
         ls.clearArchive = clearArchive;
-        ls.tooLate = tooLate;
         ls.deleteAllInList = deleteAllInList;
         ls.deleteList = deleteList;
         ls.storage = storage;
 
+        storage();
+
         function storage() {
+            for (var i = 0; i < ls.doList.length; i++){
+                if (ls.doList[i].due != null){
+                    var newDate = new Date(ls.doList[i].due);
+                    var taskDue = newDate.getTime();
+                    if (earliest > taskDue) {
+                        ls.doList[i].past = true;
+                    }
+                }
+            }
             $localStorage.doList = ls.doList;
             $localStorage.listNames = ls.listNames;
         }
@@ -70,17 +79,7 @@
             }
             storage();
         }
-        function tooLate(){
-            for (var i = 0; i < ls.doList.length; i++){
-                if (ls.doList[i].due != null){
-                    var taskDue = ls.doList[i].due.getTime();
-                    if (earliest > taskDue) {
-                    ls.doList[i].past = true;
-                    }
-                }
-            }
-            storage();
-        }
+
         function deleteAllInList(num){
             for (var i = 0; i < ls.doList.length; i++){
                 if (ls.doList[i].type == num){

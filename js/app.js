@@ -6,8 +6,8 @@
             "navController",
             "basicController",
             "listService",
-            "basicDirectives",
-            "listFilter"
+            //"listFilter",
+            "basicDirectives"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",

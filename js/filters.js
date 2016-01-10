@@ -5,7 +5,7 @@
         .filter('listFilter', listFilter);
 
     function listFilter() {
-
+        var lf = this;
     }
 
 });
