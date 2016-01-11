@@ -7,6 +7,7 @@
     .directive('tdHeaderrow', tdHeaderrow)
         .directive('tdItem', tdItem)
         .controller('tdItemController', tdItemController);
+    tdItemController.$inject = ['listService'];
 
     function tdNonefound() {
         return {
@@ -34,29 +35,12 @@
         };
     }
 
-    function tdItemController() {
+    function tdItemController(listService) {
         var tc = this;
         tc.deleteTask = deleteTask;
-        tc.filterItem = filterItem;
 
         function deleteTask(task) {
             listService.deleteTask(task);
-            tc.filterItem();
-        }
-        function filterItem() {
-            tc.doList = [];
-            var v = listService.doList;
-            for (var i = 0; i < v.length; i++) {
-                if (tc.currentSelect == 'all' && v[i].archive == false) {
-                    tc.doList.push(v[i]);
-                }
-                else if (tc.currentSelect == 'archive' && v[i].archive == true) {
-                    tc.doList.push(v[i]);
-                }
-                else if (tc.currentSelect == 'list' && v[i].archive == false && v[i].type == tc.currentList) {
-                    tc.doList.push(v[i]);
-                }
-            }
         }
     }
 
