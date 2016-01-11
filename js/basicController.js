@@ -9,8 +9,6 @@
     function basicController(listService) {
         var bc = this;
 
-        bc.doList = listService.doList;
-
         bc.listNames = listService.listNames;
 
         bc.createTask = createTask;
@@ -85,5 +83,6 @@
                 }
             }
         }
+        bc.filterItem();
     }
 }());
