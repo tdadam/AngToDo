@@ -20,6 +20,10 @@
                         templateUrl: "templates/home.html",
                         controller: "basicController as bc"
                     })
+                    .state("help", {
+                        url: "/help",
+                        templateUrl: "templates/help.html"
+                    })
                     .state("about", {
                         url: "/about",
                         templateUrl: "templates/about.html"

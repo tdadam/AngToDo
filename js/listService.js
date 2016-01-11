@@ -9,10 +9,10 @@
     function listService($localStorage) {
         var ls = this;
 
-        ls.doList = $localStorage.doList ? $localStorage.doList : [];
+        ls.doList = [];
 
         ls.addList = addList;
-        ls.listNames = $localStorage.listNames ? $localStorage.listNames : [];
+        ls.listNames = [];
 
         ls.createTask = createTask;
         ls.minDate = new Date();
@@ -24,6 +24,15 @@
         ls.deleteAllInList = deleteAllInList;
         ls.deleteList = deleteList;
         ls.storage = storage;
+
+        (function() {
+            if ($localStorage.doList) {
+                ls.doList = $localStorage.doList;
+            }
+            if ($localStorage.listNames) {
+                ls.listNames = $localStorage.listNames;
+            }
+        })();
 
         storage();
 
