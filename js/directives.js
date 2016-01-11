@@ -4,9 +4,10 @@
     angular.module('basicDirectives', [])
 
         .directive('tdNonefound', tdNonefound)
-    .directive('tdHeaderrow', tdHeaderrow)
+        .directive('tdHeaderrow', tdHeaderrow)
         .directive('tdItem', tdItem)
         .controller('tdItemController', tdItemController);
+
     tdItemController.$inject = ['listService'];
 
     function tdNonefound() {
