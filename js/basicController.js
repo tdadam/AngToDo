@@ -4,9 +4,9 @@
     angular.module('basicController', [])
         .controller('basicController', basicController);
 
-    basicController.$inject = ['listService'];
+    basicController.$inject = ['$filter', 'listService'];
 
-    function basicController(listService) {
+    function basicController($filter, listService) {
         var bc = this;
 
         bc.listNames = listService.listNames;
@@ -26,7 +26,8 @@
 
         // define functions
         function createTask() {
-            listService.createTask(bc.sometext, bc.dateDue, bc.listType);
+            var newName = $filter('capFilter')(bc.sometext);
+            listService.createTask(newName, bc.dateDue, bc.listType);
             if (bc.currentSelect == 'list') {
                 bc.listClick(bc.listType);
             }
@@ -35,6 +36,7 @@
             bc.sometext = '';
             bc.filterItem();
         }
+        //$filter('capFilter')(whateverisfiltered)
 
         function deleteAllInList(num) {
             listService.deleteAllInList(num);

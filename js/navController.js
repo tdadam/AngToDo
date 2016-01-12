@@ -4,9 +4,9 @@
     angular.module('navController', [])
         .controller('navController', navController);
 
-    navController.$inject = ["$location", "listService"];
+    navController.$inject = ["$filter", "$location", "listService"];
 
-    function navController($location, listService)
+    function navController($filter, $location, listService)
     {
         var nav = this;
         nav.isActive = isActive;
@@ -17,7 +17,8 @@
             return viewLocation === $location.path();
         }
         function addList(){
-            listService.addList(nav.listName);
+            var newName = $filter('capFilter')(nav.listName);
+            listService.addList(newName);
             nav.listName = '';
         }
     }

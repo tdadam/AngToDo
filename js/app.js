@@ -3,10 +3,10 @@
 
     angular.module('basicApp', [
             "ui.router",
+            "myFilters",
             "navController",
             "basicController",
             "listService",
-            //"listFilter",
             "basicDirectives"
         ])
 
