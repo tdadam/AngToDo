@@ -7,7 +7,8 @@
             "navController",
             "basicController",
             "listService",
-            "basicDirectives"
+            "basicDirectives",
+            "ngAnimate"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
