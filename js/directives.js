@@ -4,9 +4,11 @@
     angular.module('basicDirectives', [])
 
         .directive('tdNonefound', tdNonefound)
-    .directive('tdHeaderrow', tdHeaderrow)
+        .directive('tdHeaderrow', tdHeaderrow)
         .directive('tdItem', tdItem)
         .controller('tdItemController', tdItemController);
+
+    tdItemController.$inject = ['listService'];
 
     function tdNonefound() {
         return {
@@ -34,9 +36,13 @@
         };
     }
 
-    function tdItemController() {
+    function tdItemController(listService) {
         var tc = this;
+        tc.deleteTask = deleteTask;
 
+        function deleteTask(task) {
+            listService.deleteTask(task);
+        }
     }
 
 }());

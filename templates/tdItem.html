@@ -1,7 +1,6 @@
-<tr ng-class="{'done':tc.todo.done}" ng-class-even="'even'">
+<tr ng-class="{'done':tc.todo.done}">
     <td class="doneCheck"><input type="checkbox" ng-model="tc.todo.done" /></td>
     <td class="nameCol"><span ng-bind="tc.todo.title" ng-class="{'pastDue':tc.todo.past}"></span></td>
     <td class="dateCol"><span ng-bind="tc.todo.due | date" ng-class="{'pastDue':tc.todo.past}"></span></td>
-    <td class="removeTask"><span ng-click="bc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
-    <!--Need to figure out how to get this to display in the correct order without refreshing-->
+    <td class="removeTask"><span ng-click="tc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
 </tr>

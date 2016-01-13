@@ -3,11 +3,12 @@
 
     angular.module('basicApp', [
             "ui.router",
+            "myFilters",
             "navController",
             "basicController",
             "listService",
             "basicDirectives",
-            "listFilter"
+            "ngAnimate"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -19,6 +20,10 @@
                         url: "/home",
                         templateUrl: "templates/home.html",
                         controller: "basicController as bc"
+                    })
+                    .state("help", {
+                        url: "/help",
+                        templateUrl: "templates/help.html"
                     })
                     .state("about", {
                         url: "/about",

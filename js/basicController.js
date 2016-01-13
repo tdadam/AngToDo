@@ -4,19 +4,16 @@
     angular.module('basicController', [])
         .controller('basicController', basicController);
 
-    basicController.$inject = ['listService'];
+    basicController.$inject = ['$filter', 'listService'];
 
-    function basicController(listService) {
+    function basicController($filter, listService) {
         var bc = this;
-
-        bc.doList = listService.doList;
 
         bc.listNames = listService.listNames;
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
 
-        bc.deleteTask = deleteTask;
         bc.deleteAllInList = deleteAllInList;
         bc.clearArchive = clearArchive;
         bc.archiveChecked = archiveChecked;
@@ -27,11 +24,10 @@
         bc.currentSelect = 'all';
         bc.currentList = 0;
 
-        //bc.$storage = $localStorage;
-
         // define functions
         function createTask() {
-            listService.createTask(bc.sometext, bc.dateDue, bc.listType);
+            var newName = $filter('capFilter')(bc.sometext);
+            listService.createTask(newName, bc.dateDue, bc.listType);
             if (bc.currentSelect == 'list') {
                 bc.listClick(bc.listType);
             }
@@ -40,11 +36,7 @@
             bc.sometext = '';
             bc.filterItem();
         }
-
-        function deleteTask(task) {
-            listService.deleteTask(task);
-            bc.filterItem();
-        }
+        //$filter('capFilter')(whateverisfiltered)
 
         function deleteAllInList(num) {
             listService.deleteAllInList(num);
@@ -61,10 +53,6 @@
             bc.filterItem();
         }
 
-        (function () {
-            listService.tooLate();
-        })();
-
         function listClick(par) {
             if (par == 'all' || par == 'archive') {
                 bc.currentSelect = par;
@@ -78,8 +66,8 @@
 
         function deleteList(index) {
             listService.deleteList(index);
-            bc.filterItem();
             bc.currentSelect = 'all';
+            bc.filterItem();
         }
 
         function filterItem() {
@@ -97,5 +85,6 @@
                 }
             }
         }
+        bc.filterItem();
     }
 }());
