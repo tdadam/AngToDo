@@ -1,73 +1,90 @@
 (function () {
     'use strict';
 
-    angular.module('basicController', ['ngStorage'])
+    angular.module('basicController', [])
         .controller('basicController', basicController);
 
-    basicController.$inject = ['listService'];
+    basicController.$inject = ['$filter', 'listService'];
 
-    function basicController(listService) {
+    function basicController($filter, listService) {
         var bc = this;
-
-        bc.doList = listService.doList;
 
         bc.listNames = listService.listNames;
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
 
-        bc.deleteTask = deleteTask;
-        bc.archiveChecked = archiveChecked;
-        bc.clearArchive = clearArchive;
-        bc.tooLate = tooLate;
-        bc.listClick = listClick;
         bc.deleteAllInList = deleteAllInList;
+        bc.clearArchive = clearArchive;
+        bc.archiveChecked = archiveChecked;
+        bc.listClick = listClick;
         bc.deleteList = deleteList;
+        bc.filterItem = filterItem;
 
         bc.currentSelect = 'all';
         bc.currentList = 0;
 
-        //bc.$storage = $localStorage;
-
         // define functions
         function createTask() {
-            listService.createTask(bc.sometext, bc.dateDue, bc.listType);
-            if(bc.currentSelect == 'list'){
+            var newName = $filter('capFilter')(bc.sometext);
+            listService.createTask(newName, bc.dateDue, bc.listType);
+            if (bc.currentSelect == 'list') {
                 bc.listClick(bc.listType);
             }
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
+            bc.filterItem();
         }
-        function deleteTask(task){
-            listService.deleteTask(task);
-        }
-        function archiveChecked(){
-            listService.archiveChecked();
-        }
-        function clearArchive(){
-            listService.clearArchive();
-        }
-        function tooLate(){
-            listService.tooLate();
-        }
-        bc.tooLate();
+        //$filter('capFilter')(whateverisfiltered)
 
-        function listClick(par){
-            if (par == 'all' || par == 'archive'){
+        function deleteAllInList(num) {
+            listService.deleteAllInList(num);
+            bc.filterItem();
+        }
+
+        function clearArchive() {
+            listService.clearArchive();
+            bc.filterItem();
+        }
+
+        function archiveChecked() {
+            listService.archiveChecked();
+            bc.filterItem();
+        }
+
+        function listClick(par) {
+            if (par == 'all' || par == 'archive') {
                 bc.currentSelect = par;
             }
             else {
                 bc.currentSelect = 'list';
                 bc.currentList = bc.listNames.indexOf(par);
             }
+            bc.filterItem();
         }
-        function deleteAllInList(num){
-            listService.deleteAllInList(num);
-        }
-        function deleteList(index){
+
+        function deleteList(index) {
             listService.deleteList(index);
             bc.currentSelect = 'all';
+            bc.filterItem();
         }
+
+        function filterItem() {
+            bc.doList = [];
+            var v = listService.doList;
+            for (var i = 0; i < v.length; i++) {
+                if (bc.currentSelect == 'all' && v[i].archive == false) {
+                    bc.doList.push(v[i]);
+                }
+                else if (bc.currentSelect == 'archive' && v[i].archive == true) {
+                    bc.doList.push(v[i]);
+                }
+                else if (bc.currentSelect == 'list' && v[i].archive == false && v[i].type == bc.currentList) {
+                    bc.doList.push(v[i]);
+                }
+            }
+        }
+        bc.filterItem();
     }
 }());
