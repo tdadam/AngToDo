@@ -13,13 +13,14 @@
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
+        bc.doList = listService.doListFilter;
 
         bc.deleteAllInList = deleteAllInList;
         bc.clearArchive = clearArchive;
         bc.archiveChecked = archiveChecked;
         bc.listClick = listClick;
         bc.deleteList = deleteList;
-        bc.filterItem = filterItem;
+        //bc.filterItem = filterItem;
 
         bc.currentSelect = 'all';
         bc.currentList = 0;
@@ -34,57 +35,60 @@
             bc.listType = '';
             bc.dateDue = '';
             bc.sometext = '';
-            bc.filterItem();
+            //bc.filterItem();
         }
         //$filter('capFilter')(whateverisfiltered)
 
         function deleteAllInList(num) {
             listService.deleteAllInList(num);
-            bc.filterItem();
+            //bc.filterItem();
         }
 
         function clearArchive() {
             listService.clearArchive();
-            bc.filterItem();
+            //bc.filterItem();
         }
 
         function archiveChecked() {
             listService.archiveChecked();
-            bc.filterItem();
+            //bc.filterItem();
         }
 
         function listClick(par) {
             if (par == 'all' || par == 'archive') {
                 bc.currentSelect = par;
+                listService.currentSelect = par;
             }
             else {
                 bc.currentSelect = 'list';
+                listService.currentSelect = 'list';
                 bc.currentList = bc.listNames.indexOf(par);
+                listService.currentList = bc.listNames.indexOf(par);
             }
-            bc.filterItem();
+            //bc.filterItem();
         }
 
         function deleteList(index) {
             listService.deleteList(index);
             bc.currentSelect = 'all';
-            bc.filterItem();
+            //bc.filterItem();
         }
 
-        function filterItem() {
-            bc.doList = [];
-            var v = listService.doList;
-            for (var i = 0; i < v.length; i++) {
-                if (bc.currentSelect == 'all' && v[i].archive == false) {
-                    bc.doList.push(v[i]);
-                }
-                else if (bc.currentSelect == 'archive' && v[i].archive == true) {
-                    bc.doList.push(v[i]);
-                }
-                else if (bc.currentSelect == 'list' && v[i].archive == false && v[i].type == bc.currentList) {
-                    bc.doList.push(v[i]);
-                }
-            }
-        }
-        bc.filterItem();
+        //function filterItem() {
+        //    bc.doList = [];
+        //    var v = listService.doList;
+        //    for (var i = 0; i < v.length; i++) {
+        //        if (bc.currentSelect == 'all' && v[i].archive == false) {
+        //            bc.doList.push(v[i]);
+        //        }
+        //        else if (bc.currentSelect == 'archive' && v[i].archive == true) {
+        //            bc.doList.push(v[i]);
+        //        }
+        //        else if (bc.currentSelect == 'list' && v[i].archive == false && v[i].type == bc.currentList) {
+        //            bc.doList.push(v[i]);
+        //        }
+        //    }
+        //}
+        //bc.filterItem();
     }
 }());

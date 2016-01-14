@@ -23,7 +23,7 @@
     <div ng-show="bc.currentSelect=='archive'" class="listTitle"><h3>Archived Tasks</h3></div>
     <table>
         <tr td-headerrow></tr>
-        <tr td-item ng-repeat="todo in bc.doList | orderBy:'due'" ng-class-even="'even'" todo="todo"></tr>
+        <tr td-item ng-animate="'animate'" ng-repeat="todo in bc.doList | orderBy:'due'" ng-class-even="'even'" todo="todo"></tr>
         <tr td-nonefound ng-hide="bc.doList.length"></tr>
     </table>
 </div>

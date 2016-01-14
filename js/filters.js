@@ -3,7 +3,9 @@
 
     angular.module('myFilters', [])
         .filter('capFilter', capFilter)
-    .filter('listFilter', listFilter);
+        .filter('listFilter', listFilter);
+
+    listFilter.$inject = ['listService'];
 
     function capFilter() {
         return function (input) {
@@ -22,7 +24,20 @@
         }
     }
 
-    function listFilter() {
-
+    function listFilter(listService) {
+        return function () {
+            var v = listService.doList;
+            for (var i = 0; i < v.length; i++) {
+                if (listService.currentSelect == 'all' && v[i].archive == false) {
+                    listService.doListFilter.push(v[i]);
+                }
+                else if (listService.currentSelect == 'archive' && v[i].archive == true) {
+                    listService.doListFilter.push(v[i]);
+                }
+                else if (listService.currentSelect == 'list' && v[i].archive == false && v[i].type == listService.currentList) {
+                    listService.doListFilter.push(v[i]);
+                }
+            }
+        }
     }
 })();

@@ -10,6 +10,7 @@
         var ls = this;
 
         ls.doList = [];
+        ls.doListFilter = [];
 
         ls.addList = addList;
         ls.listNames = [];
@@ -24,6 +25,8 @@
         ls.deleteAllInList = deleteAllInList;
         ls.deleteList = deleteList;
         ls.storage = storage;
+        ls.currentSelect = 'all';
+        ls.currentList = 0;
 
         (function() {
             if ($localStorage.doList) {
