@@ -27,17 +27,19 @@
     function listFilter(listService) {
         return function () {
             var v = listService.doList;
+            var newList = [];
             for (var i = 0; i < v.length; i++) {
                 if (listService.currentSelect == 'all' && v[i].archive == false) {
-                    listService.doListFilter.push(v[i]);
+                    newList.push(v[i]);
                 }
                 else if (listService.currentSelect == 'archive' && v[i].archive == true) {
-                    listService.doListFilter.push(v[i]);
+                    newList.push(v[i]);
                 }
                 else if (listService.currentSelect == 'list' && v[i].archive == false && v[i].type == listService.currentList) {
-                    listService.doListFilter.push(v[i]);
+                    newList.push(v[i]);
                 }
             }
+            return newList;
         }
     }
 })();

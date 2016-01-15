@@ -13,7 +13,7 @@
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
-        bc.doList = listService.doListFilter;
+        bc.doList = $filter('listFilter')(listService.doList);
 
         bc.deleteAllInList = deleteAllInList;
         bc.clearArchive = clearArchive;
@@ -57,15 +57,12 @@
         function listClick(par) {
             if (par == 'all' || par == 'archive') {
                 bc.currentSelect = par;
-                listService.currentSelect = par;
             }
             else {
                 bc.currentSelect = 'list';
-                listService.currentSelect = 'list';
                 bc.currentList = bc.listNames.indexOf(par);
-                listService.currentList = bc.listNames.indexOf(par);
             }
-            //bc.filterItem();
+            listService.listClick(par);
         }
 
         function deleteList(index) {

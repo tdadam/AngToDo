@@ -11,6 +11,8 @@
 
         ls.doList = [];
         ls.doListFilter = [];
+        ls.currentSelect = 'list';
+        ls.currentList = 1;
 
         ls.addList = addList;
         ls.listNames = [];
@@ -25,8 +27,7 @@
         ls.deleteAllInList = deleteAllInList;
         ls.deleteList = deleteList;
         ls.storage = storage;
-        ls.currentSelect = 'all';
-        ls.currentList = 0;
+        ls.listClick = listClick;
 
         (function() {
             if ($localStorage.doList) {
@@ -38,6 +39,17 @@
         })();
 
         storage();
+
+        function listClick(par) {
+            if (par == 'all' || par == 'archive') {
+                ls.currentSelect = par;
+            }
+            else {
+                ls.currentSelect = 'list';
+                ls.currentList = ls.listNames.indexOf(par);
+            }
+
+        }
 
         function storage() {
             for (var i = 0; i < ls.doList.length; i++){
