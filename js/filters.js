@@ -25,21 +25,18 @@
     }
 
     function listFilter(listService) {
-        return function () {
-            var v = listService.doList;
-            var newList = [];
-            for (var i = 0; i < v.length; i++) {
-                if (listService.currentSelect == 'all' && v[i].archive == false) {
-                    newList.push(v[i]);
-                }
-                else if (listService.currentSelect == 'archive' && v[i].archive == true) {
-                    newList.push(v[i]);
-                }
-                else if (listService.currentSelect == 'list' && v[i].archive == false && v[i].type == listService.currentList) {
-                    newList.push(v[i]);
-                }
+        return function (item) {
+            var include = false;
+            if (listService.currentSelect == 'all' && item.archive == false) {
+               include = true;
             }
-            return newList;
+            else if (listService.currentSelect == 'archive' && item.archive == true) {
+                include = true;
+            }
+            else if (listService.currentSelect == 'list' && item.archive == false && item.type == listService.currentList) {
+               include = true;
+            }
+            return include ? item : null;
         }
     }
 })();

@@ -9,11 +9,11 @@
     function basicController($filter, listService) {
         var bc = this;
 
-        bc.listNames = listService.listNames;
+        bc.listNames = listService.storage.listNames;
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
-        bc.doList = $filter('listFilter')(listService.doList);
+        bc.doList = listService.storage.doList;
 
         bc.deleteAllInList = deleteAllInList;
         bc.clearArchive = clearArchive;
