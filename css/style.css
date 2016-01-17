@@ -129,11 +129,10 @@ to prevent collapsing during animation*/
     height: 0px;
 }
 
-/*TODO: transform over transition*/
 [ui-view].ng-enter, [ui-view].ng-leave {
-    position: relative;
-    left: 0;
-    right: 0;
+    position: absolute;
+    left: 1%;
+    right: 1%;
     -webkit-transition:all .5s ease-in-out;
     -moz-transition:all .5s ease-in-out;
     -o-transition:all .5s ease-in-out;

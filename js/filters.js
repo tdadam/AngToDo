@@ -2,10 +2,7 @@
     'use strict';
 
     angular.module('myFilters', [])
-        .filter('capFilter', capFilter)
-        .filter('listFilter', listFilter);
-
-    listFilter.$inject = ['listService'];
+        .filter('capFilter', capFilter);
 
     function capFilter() {
         return function (input) {
@@ -21,25 +18,6 @@
                 }
             }
             return result;
-        }
-    }
-
-    function listFilter(listService) {
-        return function () {
-            var v = listService.doList;
-            var newList = [];
-            for (var i = 0; i < v.length; i++) {
-                if (listService.currentSelect == 'all' && v[i].archive == false) {
-                    newList.push(v[i]);
-                }
-                else if (listService.currentSelect == 'archive' && v[i].archive == true) {
-                    newList.push(v[i]);
-                }
-                else if (listService.currentSelect == 'list' && v[i].archive == false && v[i].type == listService.currentList) {
-                    newList.push(v[i]);
-                }
-            }
-            return newList;
         }
     }
 })();

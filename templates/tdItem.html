@@ -2,5 +2,7 @@
     <td class="doneCheck"><input type="checkbox" ng-model="tc.todo.done" /></td>
     <td class="nameCol"><span ng-bind="tc.todo.title" ng-class="{'pastDue':tc.todo.past}"></span></td>
     <td class="dateCol"><span ng-bind="tc.todo.due | date" ng-class="{'pastDue':tc.todo.past}"></span></td>
-    <td class="removeTask"><span ng-click="tc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>
+    <!--The remove was not updating the repeat with the current setup, will have to change some function locations to get this column back.
+    Added buttons to retain functionality.-->
+    <!--<td class="removeTask"><span ng-click="tc.deleteTask(todo)" class="glyphicon glyphicon-remove"></span></td>-->
 </tr>

@@ -23,19 +23,22 @@
     <div ng-show="bc.currentSelect=='archive'" class="listTitle"><h3>Archived Tasks</h3></div>
     <table>
         <tr td-headerrow></tr>
-        <tr td-item ng-animate="'animate'" ng-repeat="todo in bc.doList | orderBy:'due'" ng-class-even="'even'" todo="todo"></tr>
+        <tr td-item ng-repeat="todo in bc.doList | orderBy:'due'" ng-class-even="'even'" todo="todo"></tr>
         <tr td-nonefound ng-hide="bc.doList.length"></tr>
     </table>
 </div>
 <div>
-    <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteAllInList(bc.currentList)" class="btn btn-danger clearBtn">Delete Items in {{bc.listNames[bc.currentList]}}</button>
+    <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteAllInList(bc.currentList)" class="btn btn-danger clearBtn">Delete All Items in {{bc.listNames[bc.currentList]}}</button>
+</div>
+<div>
+    <button ng-show="bc.currentSelect=='list'" ng-click="bc.deleteAllSelected(bc.currentList)" class="btn btn-danger clearBtn">Delete Checked Items in {{bc.listNames[bc.currentList]}}</button>
+    <button ng-show="bc.currentSelect=='all'" ng-click="bc.deleteAllSelected(all)" class="btn btn-danger clearBtn">Delete Checked Items</button>
 </div>
 <div>
     <button ng-hide="bc.currentSelect=='archive'" ng-click="bc.archiveChecked()" class="btn btn-warning clearBtn">Archive Checked Tasks</button>
     <button ng-show="bc.currentSelect=='archive'" ng-click="bc.clearArchive()" class="btn btn-danger clearBtn">Clear Archived Tasks</button>
 </div>
 
-<!--TODO: edit item and list names, use ng-dblclick or ng-click on the fields-->
+<!--TODO: edit item and list names, use ng-click on the fields-->
 <!--TODO: Select All-->
-<!--TODO: Animation-->
-<!--TODO: figure out how to store just the non-archived to display on load-->
+<!--TODO: Animation on repeat-->
