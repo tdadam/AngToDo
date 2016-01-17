@@ -1,15 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('basicController', [])
+    angular.module('basicController', ['ngStorage'])
         .controller('basicController', basicController);
 
-    basicController.$inject = ['$filter', 'listService'];
+    basicController.$inject = ['$filter', 'listService', '$localStorage'];
 
-    function basicController($filter, listService) {
+    function basicController($filter, listService, $localStorage) {
         var bc = this;
 
-        bc.listNames = listService.listNames;
+        bc.doList = $localStorage.doList;
+        bc.listNames = $localStorage.listNames;
 
         bc.createTask = createTask;
         bc.minDate = listService.minDate;
@@ -20,6 +21,7 @@
         bc.listClick = listClick;
         bc.deleteList = deleteList;
         bc.filterItem = filterItem;
+        bc.deleteAllSelected = deleteAllSelected;
 
         bc.currentSelect = 'all';
         bc.currentList = 0;
@@ -28,7 +30,7 @@
         function createTask() {
             var newName = $filter('capFilter')(bc.sometext);
             listService.createTask(newName, bc.dateDue, bc.listType);
-            if (bc.currentSelect == 'list') {
+            if (bc.currentSelect != 'all') {
                 bc.listClick(bc.listType);
             }
             bc.listType = '';
@@ -36,7 +38,6 @@
             bc.sometext = '';
             bc.filterItem();
         }
-        //$filter('capFilter')(whateverisfiltered)
 
         function deleteAllInList(num) {
             listService.deleteAllInList(num);
@@ -62,6 +63,7 @@
                 bc.currentList = bc.listNames.indexOf(par);
             }
             bc.filterItem();
+            listService.updateList(par);
         }
 
         function deleteList(index) {
@@ -72,7 +74,7 @@
 
         function filterItem() {
             bc.doList = [];
-            var v = listService.doList;
+            var v = $localStorage.doList;
             for (var i = 0; i < v.length; i++) {
                 if (bc.currentSelect == 'all' && v[i].archive == false) {
                     bc.doList.push(v[i]);
@@ -84,6 +86,11 @@
                     bc.doList.push(v[i]);
                 }
             }
+        }
+
+        function deleteAllSelected(list) {
+            listService.deleteAllSelected(list);
+            bc.filterItem();
         }
         bc.filterItem();
     }

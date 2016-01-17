@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module('myFilters', [])
-        .filter('capFilter', capFilter)
-    .filter('listFilter', listFilter);
+        .filter('capFilter', capFilter);
 
     function capFilter() {
         return function (input) {
@@ -20,9 +19,5 @@
             }
             return result;
         }
-    }
-
-    function listFilter() {
-
     }
 })();

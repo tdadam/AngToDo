@@ -14,13 +14,15 @@
         return {
           restrict: 'EA',
             replace: true,
-            template: '<tr><td></td><td class="nameCol"><i>No items in this list</i></td><td></td><td></td></tr>'
+            template: '<tr><td></td><td class="nameCol"><i>No items in this list</i></td><td></td></tr>'
+            //template: '<tr><td></td><td class="nameCol"><i>No items in this list</i></td><td></td><td></td></tr>'
         };
     }
     function tdHeaderrow() {
         return {
             restrict: 'A',
-            template: '<th class="doneCheck">Complete?</th><th class="nameCol">Name</th><th class="dateCol">Due Date</th><th class="removeTask">Delete</th>'
+            template: '<th class="doneCheck">Complete?</th><th class="nameCol">Name</th><th class="dateCol">Due Date</th>'
+            //template: '<th class="doneCheck">Complete?</th><th class="nameCol">Name</th><th class="dateCol">Due Date</th><th class="removeTask">Delete</th>'
         };
     }
     function tdItem(){
@@ -38,11 +40,11 @@
 
     function tdItemController(listService) {
         var tc = this;
-        tc.deleteTask = deleteTask;
+        //tc.deleteTask = deleteTask;
 
-        function deleteTask(task) {
-            listService.deleteTask(task);
-        }
+        //function deleteTask(task) {
+        //    listService.deleteTask(task);
+        //}
     }
 
 }());
